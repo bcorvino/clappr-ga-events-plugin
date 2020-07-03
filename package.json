@@ -27,7 +27,7 @@
     "terser-webpack-plugin": "^2.3",
     "webpack": "^4.0",
     "webpack-build-notifier": "^1.1",
-    "webpack-cli": "^3.3",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.8"
   }
 }

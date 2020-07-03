@@ -1726,6 +1726,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+console.info("here I am");
+
 var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   _inherits(GaEventsPlugin, _CorePlugin);
 
@@ -1741,6 +1743,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
 
     _classCallCheck(this, GaEventsPlugin);
 
+    console.info("here I am const");
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GaEventsPlugin).call(this, core));
     _this._volumeTimer = null;
     _this._doSendPlay = true;
@@ -1828,13 +1831,19 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
     }
   }, {
     key: "gaEvent",
-    value: function gaEvent(category, action, label, value) {
+    value: function gaEvent(category, action, label, value, customData) {
       var obj = {
         eventCategory: category,
         eventAction: action,
         eventLabel: label,
         eventValue: value
-      }; // Check if next event must use "beacon" transport
+      };
+
+      if (customData) {
+        obj = Object.Assign(obj, customData);
+      }
+
+      console.info("finalEventData", obj); // Check if next event must use "beacon" transport
       // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
 
       if (this._gaBeacon) {

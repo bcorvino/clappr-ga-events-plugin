@@ -9,9 +9,6 @@
  * @param {boolean} Set to true to enable trace debugging.
  * @param {Function} onload callback
  */
-
-console.info("here I am");
-
 export default function(name='ga', debug, trace, cb) {
   // Preserve renaming support and minification
   let win = window, doc = document, el = 'script'
