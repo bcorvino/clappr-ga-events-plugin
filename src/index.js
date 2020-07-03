@@ -86,13 +86,19 @@ export default class GaEventsPlugin extends CorePlugin {
     return this._ga.getByName && this._ga.getByName(this._trackerName)
   }
 
-  gaEvent(category, action, label, value) {
+  gaEvent(category, action, label, value, customData) {
     let obj = {
       eventCategory: category,
       eventAction: action,
       eventLabel: label,
       eventValue: value,
     }
+
+    if (customData) {
+      obj = Object.Assign(obj, customData);
+    }
+
+    console.info("finalEventData", obj);
 
     // Check if next event must use "beacon" transport
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
