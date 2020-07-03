@@ -3,10 +3,13 @@
 import {Browser, CorePlugin, Events, Playback, $} from 'clappr'
 import gaTrackingSnippet from './ga-tracking'
 
+console.info("here I am");
+
 export default class GaEventsPlugin extends CorePlugin {
   get name() { return 'ga_events' }
 
   constructor(core) {
+    console.info("here I am const");
     super(core)
     this._volumeTimer = null
     this._doSendPlay = true
