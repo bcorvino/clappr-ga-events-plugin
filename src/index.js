@@ -47,6 +47,11 @@ export default class GaEventsPlugin extends CorePlugin {
       this.listenTo(this.__container, Events.CONTAINER_PAUSE, this.onPause)
       this.listenTo(this.__container, Events.CONTAINER_STOP, this.onStop)
       this.listenTo(this.__container, Events.CONTAINER_ENDED, this.onEnded)
+      
+      //Add listener for updating custom metrics and configuration
+      //this.listenTo(this.core, Events.CORE_OPTIONS_CHANGE, this.onOptionsChange)
+
+
       this._hasEvent('ready') && this.listenTo(this.__container, Events.CONTAINER_READY, this.onReady)
       this._hasEvent('buffering') && this.listenTo(this.__container, Events.CONTAINER_STATE_BUFFERING, this.onBuffering)
       this._hasEvent('bufferfull') && this.listenTo(this.__container, Events.CONTAINER_STATE_BUFFERFULL, this.onBufferFull)
@@ -57,6 +62,8 @@ export default class GaEventsPlugin extends CorePlugin {
       this._hasEvent('highdefinitionupdate') && this.listenTo(this.__container, Events.CONTAINER_HIGHDEFINITIONUPDATE, this.onHD)
       this._hasEvent('playbackdvrstatechanged') && this.listenTo(this.__container, Events.CONTAINER_PLAYBACKDVRSTATECHANGED, this.onDVR)
       this._hasEvent('error') && this.listenTo(this.__container, Events.CONTAINER_ERROR, this.onError)
+    
+
     }
   }
 
@@ -72,6 +79,7 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   onCoreReady() {
+    console.info("onCoreReady fired", this.options.gaEventsPlugin)
     // Since Clappr 0.2.84, "CORE_READY" event is trigerred after container changed
     this.options.gaEventsPlugin && this.readPluginConfig(this.options.gaEventsPlugin)
   }
@@ -142,6 +150,9 @@ export default class GaEventsPlugin extends CorePlugin {
     this._gaPlayOnce = cfg.sendPlayOnce === true
     this._gaEx = cfg.sendExceptions === true
     this._gaExDesc = cfg.sendExceptionsMsg === true
+
+    //ADD CUSTOM DATA TO CONFIG
+    this._gaCustomData = cfg.customData || {}
 
     if (cfg.stopOnLeave === true) this.stopOnLeave()
 
