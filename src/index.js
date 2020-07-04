@@ -64,7 +64,7 @@ export default class GaEventsPlugin extends CorePlugin {
       // Expose player method only if tracker name is available
       if (this._trackerName) {
         return {
-          gaEventsTracker: this.gaTracker() //has to be a function call
+          gaEventsTracker: this.gaTracker
         }
       }
 
@@ -86,6 +86,7 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   gaTracker() {
+    console.info("gaTracker", this._trackerName)
     return this._ga.getByName && this._ga.getByName(this._trackerName)
   }
 
