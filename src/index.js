@@ -86,7 +86,7 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   gaTracker() {
-    console.info("gaTracker func", this._trackerName)
+    console.info("gaTracker func", this._trackerName, this._ga.getAll())
     return this._ga.getByName && this._ga.getByName(this._trackerName)
   }
 
