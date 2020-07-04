@@ -1743,7 +1743,6 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
 
     _classCallCheck(this, GaEventsPlugin);
 
-    console.info("here I am const");
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GaEventsPlugin).call(this, core));
     _this._volumeTimer = null;
     _this._doSendPlay = true;
@@ -1752,7 +1751,8 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
     _this.readPluginConfig(_this.options.gaEventsPlugin);
 
     (0, _gaTracking["default"])(_this._gaCfg.name, _this._gaCfg.debug, _this._gaCfg.trace, function (r) {
-      r && _this._ga('create', _this._trackingId, _this._createFieldsObject);
+      console.info("ga create", _this._createFieldsObject);
+      r && _this._ga('create', _this._trackingId, _this._createFieldsObject.name, _this._createFieldsObject);
     });
     return _this;
   }
@@ -1827,7 +1827,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   }, {
     key: "gaTracker",
     value: function gaTracker() {
-      console.info("gaTracker", this._trackerName);
+      console.info("gaTracker", this._trackerName, this._ga.getAll());
       return this._ga.getByName && this._ga.getByName(this._trackerName);
     }
   }, {
