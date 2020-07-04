@@ -98,10 +98,11 @@ export default class GaEventsPlugin extends CorePlugin {
     }
 
     if (this._gaCustomData) {
-      obj = Object.Assign(obj, this._gaCustomData);
+      console.info("have custom data", this._gaCustomData)
+      obj = Object.Assign(obj, this._gaCustomData)
     }
 
-    console.info("finalEventData", obj);
+    console.info("finalEventData", obj)
 
     // Check if next event must use "beacon" transport
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
@@ -143,7 +144,7 @@ export default class GaEventsPlugin extends CorePlugin {
     this._gaEx = cfg.sendExceptions === true
     this._gaExDesc = cfg.sendExceptionsMsg === true
 
-    console.info("customData", config.customData)
+    console.info("customData", cfg.customData)
 
     //ADD CUSTOM DATA TO CONFIG
     this._gaCustomData = cfg.customData || {}

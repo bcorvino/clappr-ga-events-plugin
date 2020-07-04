@@ -1840,6 +1840,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       };
 
       if (this._gaCustomData) {
+        console.info("have custom data", this._gaCustomData);
         obj = Object.Assign(obj, this._gaCustomData);
       }
 
@@ -1893,7 +1894,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       this._gaPlayOnce = cfg.sendPlayOnce === true;
       this._gaEx = cfg.sendExceptions === true;
       this._gaExDesc = cfg.sendExceptionsMsg === true;
-      console.info("customData", config.customData); //ADD CUSTOM DATA TO CONFIG
+      console.info("customData", cfg.customData); //ADD CUSTOM DATA TO CONFIG
 
       this._gaCustomData = cfg.customData || {};
       if (cfg.stopOnLeave === true) this.stopOnLeave(); // Add 'error' to tracked events if GA exceptions are enabled
