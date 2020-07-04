@@ -1831,7 +1831,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
     }
   }, {
     key: "gaEvent",
-    value: function gaEvent(category, action, label, value, customData) {
+    value: function gaEvent(category, action, label, value) {
       var obj = {
         eventCategory: category,
         eventAction: action,
@@ -1895,7 +1895,8 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       this._gaPlayOnce = cfg.sendPlayOnce === true;
       this._gaEx = cfg.sendExceptions === true;
       this._gaExDesc = cfg.sendExceptionsMsg === true;
-      console.info("customData", cfg.customData); //ADD CUSTOM DATA TO CONFIG
+      console.info("customData", cfg.customData);
+      console.info("trackerName", this._trackerName); //ADD CUSTOM DATA TO CONFIG
 
       this._gaCustomData = cfg.customData || {};
       if (cfg.stopOnLeave === true) this.stopOnLeave(); // Add 'error' to tracked events if GA exceptions are enabled
