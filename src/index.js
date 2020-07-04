@@ -89,7 +89,7 @@ export default class GaEventsPlugin extends CorePlugin {
     return this._ga.getByName && this._ga.getByName(this._trackerName)
   }
 
-  gaEvent(category, action, label, value, customData) {
+  gaEvent(category, action, label, value) {
     let obj = {
       eventCategory: category,
       eventAction: action,
@@ -146,6 +146,7 @@ export default class GaEventsPlugin extends CorePlugin {
     this._gaExDesc = cfg.sendExceptionsMsg === true
 
     console.info("customData", cfg.customData)
+    console.info("trackerName", this._trackerName)
 
     //ADD CUSTOM DATA TO CONFIG
     this._gaCustomData = cfg.customData || {}
