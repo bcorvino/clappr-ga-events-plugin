@@ -1726,8 +1726,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-console.info("here I am");
-
 var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   _inherits(GaEventsPlugin, _CorePlugin);
 
@@ -1743,6 +1741,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
 
     _classCallCheck(this, GaEventsPlugin);
 
+    console.info("plugin constructor");
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GaEventsPlugin).call(this, core));
     _this._volumeTimer = null;
     _this._doSendPlay = true;
