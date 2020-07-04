@@ -1751,7 +1751,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
     console.info("plugin constructor after", _this._trackerName, _this._createFieldsObject);
     (0, _gaTracking["default"])(_this._gaCfg.name, _this._gaCfg.debug, _this._gaCfg.trace, function (r) {
       console.info("ga create", _this._createFieldsObject);
-      r && _this._ga('create', _this._trackingId, _this._createFieldsObject.name, _this._createFieldsObject);
+      r && _this._ga('create', _this._trackingId, _this._trackerName, _this._createFieldsObject);
     });
     return _this;
   }
@@ -1826,7 +1826,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   }, {
     key: "gaTracker",
     value: function gaTracker() {
-      console.info("gaTracker func", this._trackerName, this._ga.getAll());
+      //console.info("gaTracker func", this._trackerName)
       return this._ga.getByName && this._ga.getByName(this._trackerName);
     }
   }, {

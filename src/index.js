@@ -15,7 +15,7 @@ export default class GaEventsPlugin extends CorePlugin {
     console.info("plugin constructor after", this._trackerName, this._createFieldsObject)
     gaTrackingSnippet(this._gaCfg.name, this._gaCfg.debug, this._gaCfg.trace, (r) => {
       console.info("ga create", this._createFieldsObject)
-      r && this._ga('create', this._trackingId, this._createFieldsObject.name, this._createFieldsObject)
+      r && this._ga('create', this._trackingId, this._trackerName, this._createFieldsObject)
     })
   }
 
@@ -85,7 +85,7 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   gaTracker() {
-    console.info("gaTracker func", this._trackerName, this._ga.getAll())
+    //console.info("gaTracker func", this._trackerName)
     return this._ga.getByName && this._ga.getByName(this._trackerName)
   }
 
