@@ -98,8 +98,9 @@ export default class GaEventsPlugin extends CorePlugin {
     }
 
     if (this._gaCustomData) {
-      console.info("have custom data", this._gaCustomData)
-      obj = Object.Assign(obj, this._gaCustomData)
+      for(let customDataKey in this._gaCustomData) {
+        obj[customDataKey] = this._gaCustomData[customDataKey]
+      }
     }
 
     console.info("finalEventData", obj)
