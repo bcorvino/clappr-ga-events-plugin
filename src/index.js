@@ -143,6 +143,8 @@ export default class GaEventsPlugin extends CorePlugin {
     this._gaEx = cfg.sendExceptions === true
     this._gaExDesc = cfg.sendExceptionsMsg === true
 
+    console.info("customData", config.customData)
+
     //ADD CUSTOM DATA TO CONFIG
     this._gaCustomData = cfg.customData || {}
 
