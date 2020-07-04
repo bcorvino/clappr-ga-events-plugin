@@ -1827,7 +1827,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   }, {
     key: "gaTracker",
     value: function gaTracker() {
-      console.info("gaTracker", this._trackerName);
+      console.info("gaTracker func", this._trackerName);
       return this._ga.getByName && this._ga.getByName(this._trackerName);
     }
   }, {
