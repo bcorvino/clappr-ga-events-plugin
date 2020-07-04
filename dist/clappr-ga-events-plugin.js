@@ -1806,7 +1806,8 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       // Expose player method only if tracker name is available
       if (this._trackerName) {
         return {
-          gaEventsTracker: this.gaTracker
+          gaEventsTracker: this.gaTracker() //has to be a function call
+
         };
       }
 
