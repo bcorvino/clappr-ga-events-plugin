@@ -1741,7 +1741,6 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
 
     _classCallCheck(this, GaEventsPlugin);
 
-    console.info("plugin constructor");
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GaEventsPlugin).call(this, core));
     _this._volumeTimer = null;
     _this._doSendPlay = true;
@@ -1749,6 +1748,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
 
     _this.readPluginConfig(_this.options.gaEventsPlugin);
 
+    console.info("plugin constructor after", _this._trackerName, _this._createFieldsObject);
     (0, _gaTracking["default"])(_this._gaCfg.name, _this._gaCfg.debug, _this._gaCfg.trace, function (r) {
       console.info("ga create", _this._createFieldsObject);
       r && _this._ga('create', _this._trackingId, _this._createFieldsObject.name, _this._createFieldsObject);

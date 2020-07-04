@@ -7,12 +7,12 @@ export default class GaEventsPlugin extends CorePlugin {
   get name() { return 'ga_events' }
 
   constructor(core) {
-    console.info("plugin constructor")
     super(core)
     this._volumeTimer = null
     this._doSendPlay = true
     this._isIos = Browser.isiOS
     this.readPluginConfig(this.options.gaEventsPlugin)
+    console.info("plugin constructor after", this._trackerName, this._createFieldsObject)
     gaTrackingSnippet(this._gaCfg.name, this._gaCfg.debug, this._gaCfg.trace, (r) => {
       console.info("ga create", this._createFieldsObject)
       r && this._ga('create', this._trackingId, this._createFieldsObject.name, this._createFieldsObject)
