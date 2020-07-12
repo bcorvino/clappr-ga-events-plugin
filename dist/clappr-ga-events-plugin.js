@@ -1917,7 +1917,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   }, {
     key: "gaEvent",
     value: function gaEvent(category, action, label, value) {
-      this.debug("gaEvent", category, action, label, value);
+      this.debug("gaEvent", this.customGAData, category, action, label, value);
       var obj = {
         eventCategory: category,
         eventAction: action,

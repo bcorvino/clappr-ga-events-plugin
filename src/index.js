@@ -107,7 +107,7 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   gaEvent(category, action, label, value) {
-    this.debug("gaEvent", category, action, label, value)
+    this.debug("gaEvent", this.customGAData, category, action, label, value)
     let obj = {
       eventCategory: category,
       eventAction: action,
