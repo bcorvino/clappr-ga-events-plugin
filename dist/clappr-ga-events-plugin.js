@@ -1926,8 +1926,8 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       };
 
       if (this._gaCustomData) {
-        for (var customDataKey in this._gaCustomData) {
-          obj[customDataKey] = this._gaCustomData[customDataKey];
+        for (var customDataKey in this._gaCustomData.dimensions) {
+          obj[customDataKey] = this._gaCustomData.dimensions[customDataKey];
         }
       }
 

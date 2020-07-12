@@ -116,8 +116,8 @@ export default class GaEventsPlugin extends CorePlugin {
     }
 
     if (this._gaCustomData) {
-      for(let customDataKey in this._gaCustomData) {
-        obj[customDataKey] = this._gaCustomData[customDataKey]
+      for(let customDataKey in this._gaCustomData.dimensions) {
+        obj[customDataKey] = this._gaCustomData.dimensions[customDataKey]
       }
     }
 
