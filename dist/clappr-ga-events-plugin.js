@@ -1810,11 +1810,11 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
     _this.log = {};
     _this.log.history = [];
 
-    _this.readPluginConfig(_this.options.gaEventsPlugin);
+    _this.readPluginConfig(_this.options.gaEventsPlugin); //debug("plugin constructor after", this._trackerName, this._createFieldsObject)
 
-    debug("plugin constructor after", _this._trackerName, _this._createFieldsObject);
+
     (0, _gaTracking["default"])(_this._gaCfg.name, _this._gaCfg.debug, _this._gaCfg.trace, function (r) {
-      debug("ga create", _this._createFieldsObject);
+      //debug("ga create", this._createFieldsObject)
       r && _this._ga('create', _this._trackingId, _this._trackerName, _this._createFieldsObject);
     });
     return _this;
@@ -1911,13 +1911,13 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   }, {
     key: "gaTracker",
     value: function gaTracker() {
-      debug("gaTracker func", this._trackerName);
+      this.debug("gaTracker func", this._trackerName);
       return this._ga.getByName && this._ga.getByName(this._trackerName);
     }
   }, {
     key: "gaEvent",
     value: function gaEvent(category, action, label, value) {
-      debug("gaEvent", category, action, label, value);
+      this.debug("gaEvent", category, action, label, value);
       var obj = {
         eventCategory: category,
         eventAction: action,
@@ -1931,7 +1931,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
         }
       }
 
-      debug("finalEventData", obj); // Check if next event must use "beacon" transport
+      this.debug("finalEventData", obj); // Check if next event must use "beacon" transport
       // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
 
       if (this._gaBeacon) {
@@ -1981,8 +1981,8 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       this._gaPlayOnce = cfg.sendPlayOnce === true;
       this._gaEx = cfg.sendExceptions === true;
       this._gaExDesc = cfg.sendExceptionsMsg === true;
-      debug("customData", cfg.customData);
-      debug("trackerName", this._trackerName); //ADD CUSTOM DATA TO CONFIG
+      this.debug("customData", cfg.customData);
+      this.debug("trackerName", this._trackerName); //ADD CUSTOM DATA TO CONFIG
 
       this._gaCustomData = cfg.customData || {};
       if (cfg.stopOnLeave === true) this.stopOnLeave(); // Add 'error' to tracked events if GA exceptions are enabled

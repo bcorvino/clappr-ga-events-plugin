@@ -14,9 +14,9 @@ export default class GaEventsPlugin extends CorePlugin {
     this.log = {};
     this.log.history = [];
     this.readPluginConfig(this.options.gaEventsPlugin)
-    debug("plugin constructor after", this._trackerName, this._createFieldsObject)
+    //debug("plugin constructor after", this._trackerName, this._createFieldsObject)
     gaTrackingSnippet(this._gaCfg.name, this._gaCfg.debug, this._gaCfg.trace, (r) => {
-      debug("ga create", this._createFieldsObject)
+      //debug("ga create", this._createFieldsObject)
       r && this._ga('create', this._trackingId, this._trackerName, this._createFieldsObject)
     })
   }
@@ -102,12 +102,12 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   gaTracker() {
-    debug("gaTracker func", this._trackerName)
+    this.debug("gaTracker func", this._trackerName)
     return this._ga.getByName && this._ga.getByName(this._trackerName)
   }
 
   gaEvent(category, action, label, value) {
-    debug("gaEvent", category, action, label, value)
+    this.debug("gaEvent", category, action, label, value)
     let obj = {
       eventCategory: category,
       eventAction: action,
@@ -121,7 +121,7 @@ export default class GaEventsPlugin extends CorePlugin {
       }
     }
 
-    debug("finalEventData", obj)
+    this.debug("finalEventData", obj)
 
     // Check if next event must use "beacon" transport
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
@@ -163,8 +163,8 @@ export default class GaEventsPlugin extends CorePlugin {
     this._gaEx = cfg.sendExceptions === true
     this._gaExDesc = cfg.sendExceptionsMsg === true
 
-    debug("customData", cfg.customData)
-    debug("trackerName", this._trackerName)
+    this.debug("customData", cfg.customData)
+    this.debug("trackerName", this._trackerName)
 
     //ADD CUSTOM DATA TO CONFIG
     this._gaCustomData = cfg.customData || {}
