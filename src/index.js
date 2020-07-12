@@ -11,10 +11,12 @@ export default class GaEventsPlugin extends CorePlugin {
     this._volumeTimer = null
     this._doSendPlay = true
     this._isIos = Browser.isiOS
+    this.log = log || {};
+    this.log.history = log.history || [];
     this.readPluginConfig(this.options.gaEventsPlugin)
-    console.info("plugin constructor after", this._trackerName, this._createFieldsObject)
+    debug("plugin constructor after", this._trackerName, this._createFieldsObject)
     gaTrackingSnippet(this._gaCfg.name, this._gaCfg.debug, this._gaCfg.trace, (r) => {
-      console.info("ga create", this._createFieldsObject)
+      debug("ga create", this._createFieldsObject)
       r && this._ga('create', this._trackingId, this._trackerName, this._createFieldsObject)
     })
   }
@@ -23,6 +25,21 @@ export default class GaEventsPlugin extends CorePlugin {
     return this.core.activeContainer
       ? this.core.activeContainer
       : this.core.mediaControl.container
+  }
+
+  debug(...theArgs) {
+    if(this._gaCfg.debug) {
+      if(typeof(console) !== 'undefined') {
+        //console.info('debug console not undef', theArgs);
+        this.log.history.push(theArgs);
+        if(console) {
+          //console.info('debug have console');
+          const newarr = [].slice.call(theArgs);
+          //fconsole.info('debug', newarr);
+          (typeof console.info === 'object' ? this.log.apply.call(console.info, console, newarr) : console.info.apply(console, newarr));
+        }
+        }
+    }
   }
 
   bindEvents() {
@@ -85,11 +102,12 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   gaTracker() {
-    //console.info("gaTracker func", this._trackerName)
+    debug("gaTracker func", this._trackerName)
     return this._ga.getByName && this._ga.getByName(this._trackerName)
   }
 
   gaEvent(category, action, label, value) {
+    debug("gaEvent", category, action, label, value)
     let obj = {
       eventCategory: category,
       eventAction: action,
@@ -103,7 +121,7 @@ export default class GaEventsPlugin extends CorePlugin {
       }
     }
 
-    console.info("finalEventData", obj)
+    debug("finalEventData", obj)
 
     // Check if next event must use "beacon" transport
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
@@ -145,8 +163,8 @@ export default class GaEventsPlugin extends CorePlugin {
     this._gaEx = cfg.sendExceptions === true
     this._gaExDesc = cfg.sendExceptionsMsg === true
 
-    console.info("customData", cfg.customData)
-    console.info("trackerName", this._trackerName)
+    debug("customData", cfg.customData)
+    debug("trackerName", this._trackerName)
 
     //ADD CUSTOM DATA TO CONFIG
     this._gaCustomData = cfg.customData || {}
