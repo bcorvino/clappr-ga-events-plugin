@@ -1807,8 +1807,8 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
     _this._volumeTimer = null;
     _this._doSendPlay = true;
     _this._isIos = _clappr.Browser.isiOS;
-    _this.log = log || {};
-    _this.log.history = log.history || [];
+    _this.log = {};
+    _this.log.history = [];
 
     _this.readPluginConfig(_this.options.gaEventsPlugin);
 

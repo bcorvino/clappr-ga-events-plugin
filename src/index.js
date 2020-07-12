@@ -11,8 +11,8 @@ export default class GaEventsPlugin extends CorePlugin {
     this._volumeTimer = null
     this._doSendPlay = true
     this._isIos = Browser.isiOS
-    this.log = log || {};
-    this.log.history = log.history || [];
+    this.log = {};
+    this.log.history = [];
     this.readPluginConfig(this.options.gaEventsPlugin)
     debug("plugin constructor after", this._trackerName, this._createFieldsObject)
     gaTrackingSnippet(this._gaCfg.name, this._gaCfg.debug, this._gaCfg.trace, (r) => {
