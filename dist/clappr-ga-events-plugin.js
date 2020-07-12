@@ -1954,13 +1954,13 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   }, {
     key: "updateCustomDimensions",
     value: function updateCustomDimensions(dimensions) {
-      debug("updateCustomDimensions", dimensions);
+      this.debug("updateCustomDimensions", dimensions);
 
       for (var dim in dimensions) {
         this._gaCustomDimensions[dim] = dimensions[dim];
       }
 
-      debug("updateCustomDimensions", this._gaCustomDimensions);
+      this.debug("updateCustomDimensions", this._gaCustomDimensions);
     }
   }, {
     key: "readPluginConfig",

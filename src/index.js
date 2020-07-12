@@ -141,11 +141,11 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   updateCustomDimensions(dimensions){
-    debug("updateCustomDimensions", dimensions);
+    this.debug("updateCustomDimensions", dimensions);
     for(let dim in dimensions) {
       this._gaCustomDimensions[dim] = dimensions[dim];
     }
-    debug("updateCustomDimensions", this._gaCustomDimensions);
+    this.debug("updateCustomDimensions", this._gaCustomDimensions);
   }
 
   readPluginConfig(cfg) {
