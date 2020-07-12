@@ -1917,7 +1917,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   }, {
     key: "gaEvent",
     value: function gaEvent(category, action, label, value) {
-      this.debug("gaEvent", this.customGAData, category, action, label, value);
+      this.debug("gaEvent", category, action, label, value);
       var obj = {
         eventCategory: category,
         eventAction: action,
@@ -1925,9 +1925,9 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
         eventValue: value
       };
 
-      if (this._gaCustomData) {
-        for (var customDataKey in this._gaCustomData.dimensions) {
-          obj[customDataKey] = this._gaCustomData.dimensions[customDataKey];
+      if (this._gaCustomDimensions) {
+        for (var customDataKey in this._gaCustomDimensions) {
+          obj[customDataKey] = this._gaCustomDimensions[customDataKey];
         }
       }
 
@@ -1950,6 +1950,17 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
         'exDescription': desc,
         'exFatal': isFatal
       });
+    }
+  }, {
+    key: "updateCustomDimensions",
+    value: function updateCustomDimensions(dimensions) {
+      debug("updateCustomDimensions", dimensions);
+
+      for (var dim in dimensions) {
+        this._gaCustomDimensions[dim] = dimensions[dim];
+      }
+
+      debug("updateCustomDimensions", this._gaCustomDimensions);
     }
   }, {
     key: "readPluginConfig",
@@ -1980,11 +1991,11 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       this._eventMap = _clappr.$.isPlainObject(cfg.eventMapping) && _objectSpread({}, this._defaultEventMap, {}, cfg.eventMapping) || this._defaultEventMap;
       this._gaPlayOnce = cfg.sendPlayOnce === true;
       this._gaEx = cfg.sendExceptions === true;
-      this._gaExDesc = cfg.sendExceptionsMsg === true;
-      this.debug("customData", cfg.customData);
-      this.debug("trackerName", this._trackerName); //ADD CUSTOM DATA TO CONFIG
+      this._gaExDesc = cfg.sendExceptionsMsg === true; //this.debug("customData", cfg.customData)
+      //this.debug("trackerName", this._trackerName)
+      //ADD CUSTOM DATA TO CONFIG
 
-      this._gaCustomData = cfg.customData || {};
+      this._gaCustomDimensions = cfg.customDimensions || {};
       if (cfg.stopOnLeave === true) this.stopOnLeave(); // Add 'error' to tracked events if GA exceptions are enabled
 
       if (this._gaEx && !this._hasEvent('error')) this._events.push('error');

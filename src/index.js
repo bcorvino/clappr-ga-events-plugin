@@ -107,7 +107,7 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   gaEvent(category, action, label, value) {
-    this.debug("gaEvent", this.customGAData, category, action, label, value)
+    this.debug("gaEvent", category, action, label, value)
     let obj = {
       eventCategory: category,
       eventAction: action,
@@ -115,9 +115,9 @@ export default class GaEventsPlugin extends CorePlugin {
       eventValue: value,
     }
 
-    if (this._gaCustomData) {
-      for(let customDataKey in this._gaCustomData.dimensions) {
-        obj[customDataKey] = this._gaCustomData.dimensions[customDataKey]
+    if (this._gaCustomDimensions) {
+      for(let customDataKey in this._gaCustomDimensions) {
+        obj[customDataKey] = this._gaCustomDimensions[customDataKey]
       }
     }
 
@@ -138,6 +138,14 @@ export default class GaEventsPlugin extends CorePlugin {
       'exDescription': desc,
       'exFatal': isFatal
     })
+  }
+
+  updateCustomDimensions(dimensions){
+    debug("updateCustomDimensions", dimensions);
+    for(let dim in dimensions) {
+      this._gaCustomDimensions[dim] = dimensions[dim];
+    }
+    debug("updateCustomDimensions", this._gaCustomDimensions);
   }
 
   readPluginConfig(cfg) {
@@ -163,11 +171,11 @@ export default class GaEventsPlugin extends CorePlugin {
     this._gaEx = cfg.sendExceptions === true
     this._gaExDesc = cfg.sendExceptionsMsg === true
 
-    this.debug("customData", cfg.customData)
-    this.debug("trackerName", this._trackerName)
+    //this.debug("customData", cfg.customData)
+    //this.debug("trackerName", this._trackerName)
 
     //ADD CUSTOM DATA TO CONFIG
-    this._gaCustomData = cfg.customData || {}
+    this._gaCustomDimensions = cfg.customDimensions || {}
 
     if (cfg.stopOnLeave === true) this.stopOnLeave()
 
