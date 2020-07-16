@@ -1918,12 +1918,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
     key: "gaEvent",
     value: function gaEvent(category, action, label, value) {
       this.debug("gaEvent", category, action, label, value);
-      var obj = {
-        eventCategory: category,
-        eventAction: action,
-        eventLabel: label,
-        eventValue: value
-      };
+      var obj = {};
 
       if (this._gaCustomDimensions) {
         for (var customDataKey in this._gaCustomDimensions) {
@@ -1931,7 +1926,11 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
         }
       }
 
-      this.debug("finalEventData", obj); // Check if next event must use "beacon" transport
+      obj.eventCategory = category;
+      obj.eventAction = action;
+      obj.eventLabel = label;
+      obj.eventValue = value;
+      this.debug("final Event Data", obj); // Check if next event must use "beacon" transport
       // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
 
       if (this._gaBeacon) {
