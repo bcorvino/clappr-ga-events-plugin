@@ -143,6 +143,10 @@ export default class GaEventsPlugin extends CorePlugin {
   updateCustomDimensions(dimensions){
     this.debug("updateCustomDimensions", dimensions);
     for(let dim in dimensions) {
+      if(dim.indexOf('dimension') != 0 && dim.indexOf('metric') != 0) {
+        this.debug("skipping invalid entry " + dim);
+        continue;
+      }
       this._gaCustomDimensions[dim] = dimensions[dim];
     }
     this.debug("updateCustomDimensions", this._gaCustomDimensions);
