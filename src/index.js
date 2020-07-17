@@ -142,7 +142,7 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   updateEventLabel(lbl){
-    this.debug("updateEventLabel", dimensions);
+    this.debug("updateEventLabel", lbl);
     this._label = lbl;
   }
 

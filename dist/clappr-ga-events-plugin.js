@@ -1953,7 +1953,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
   }, {
     key: "updateEventLabel",
     value: function updateEventLabel(lbl) {
-      this.debug("updateEventLabel", dimensions);
+      this.debug("updateEventLabel", lbl);
       this._label = lbl;
     }
   }, {
