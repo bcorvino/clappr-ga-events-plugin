@@ -1951,6 +1951,12 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       });
     }
   }, {
+    key: "updateEventLabel",
+    value: function updateEventLabel(lbl) {
+      this.debug("updateEventLabel", dimensions);
+      this._label = lbl;
+    }
+  }, {
     key: "updateCustomDimensions",
     value: function updateCustomDimensions(dimensions) {
       this.debug("updateCustomDimensions", dimensions);
