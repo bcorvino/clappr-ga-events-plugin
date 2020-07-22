@@ -18,13 +18,15 @@ export default class GaEventsPlugin extends CorePlugin {
     gaTrackingSnippet(this._gaCfg.name, this._gaCfg.debug, this._gaCfg.trace, (r) => {
       //debug("ga create", this._createFieldsObject)
       r && this._ga('create', this._trackingId, this._trackerName, this._createFieldsObject)
+
       if(this._gaCustomTasks.length > 0) {
         this.debug('adding custom tasks');
         this._gaCustomTasks.map((task) => {
           this.debug('adding task', task.name);
-          this._ga.set(task.name, task.func);
+          this._ga('set', task.name, task.func);
         });
       }
+
     })
   }
 
