@@ -1825,7 +1825,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
         _this._gaCustomTasks.map(function (task) {
           _this.debug('adding task', task.name);
 
-          _this._ga.set(task.name, task.func);
+          _this._ga('set', task.name, task.func);
         });
       }
     });
