@@ -1823,7 +1823,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       if (_this._gaCreateCallback) {
         _this.debug('running custom callback', _this._gaCreateCallback);
 
-        _this._gaCreateCallback;
+        _this._ga(_this._gaCreateCallback);
       }
 
       if (_this._gaCustomTasks.length > 0) {

@@ -21,7 +21,7 @@ export default class GaEventsPlugin extends CorePlugin {
 
       if(this._gaCreateCallback) {
         this.debug('running custom callback', this._gaCreateCallback);
-        this._gaCreateCallback;
+        this._ga(this._gaCreateCallback);
       }
 
       if(this._gaCustomTasks.length > 0) {
