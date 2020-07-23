@@ -197,7 +197,7 @@ export default class GaEventsPlugin extends CorePlugin {
     this._gaCustomTasks = cfg.customTasks || [];
     this._gaCreateCallback = cfg.gaCreateCallback || null;
 
-    //this.debug("customData", cfg.customData)
+    this.debug("_gaCreateCallback", this._gaCreateCallback);
     //this.debug("trackerName", this._trackerName)
 
     //ADD CUSTOM DATA TO CONFIG
