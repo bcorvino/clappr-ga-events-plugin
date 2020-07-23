@@ -2019,7 +2019,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       this._gaEx = cfg.sendExceptions === true;
       this._gaExDesc = cfg.sendExceptionsMsg === true;
       this._gaCustomTasks = cfg.customTasks || [];
-      this._gaCreateCallback = cfg._gaCreateCallback || null; //this.debug("customData", cfg.customData)
+      this._gaCreateCallback = cfg.gaCreateCallback || null; //this.debug("customData", cfg.customData)
       //this.debug("trackerName", this._trackerName)
       //ADD CUSTOM DATA TO CONFIG
 
