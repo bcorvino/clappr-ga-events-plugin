@@ -19,6 +19,10 @@ export default class GaEventsPlugin extends CorePlugin {
       //debug("ga create", this._createFieldsObject)
       r && this._ga('create', this._trackingId, this._trackerName, this._createFieldsObject)
 
+      if(this._gaCreateCallback) {
+        this._gaCreateCallback;
+      }
+
       if(this._gaCustomTasks.length > 0) {
         this.debug('adding custom tasks');
         this._gaCustomTasks.map((task) => {
@@ -190,6 +194,7 @@ export default class GaEventsPlugin extends CorePlugin {
     this._gaEx = cfg.sendExceptions === true
     this._gaExDesc = cfg.sendExceptionsMsg === true
     this._gaCustomTasks = cfg.customTasks || [];
+    this._gaCreateCallback = cfg._gaCreateCallback || null;
 
     //this.debug("customData", cfg.customData)
     //this.debug("trackerName", this._trackerName)
@@ -480,7 +485,7 @@ export default class GaEventsPlugin extends CorePlugin {
   }
 
   stopOnLeave() {
-    if (this._stopOnLeave) return
+    if (this._stopOnLeaveEvent) return
 
     this._stopOnLeave = e => {
       if (!this.isPlaying) {

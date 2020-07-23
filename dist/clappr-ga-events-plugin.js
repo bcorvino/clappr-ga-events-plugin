@@ -1819,6 +1819,10 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       //debug("ga create", this._createFieldsObject)
       r && _this._ga('create', _this._trackingId, _this._trackerName, _this._createFieldsObject);
 
+      if (_this._gaCreateCallback) {
+        _this._gaCreateCallback;
+      }
+
       if (_this._gaCustomTasks.length > 0) {
         _this.debug('adding custom tasks');
 
@@ -2014,7 +2018,8 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       this._gaPlayOnce = cfg.sendPlayOnce === true;
       this._gaEx = cfg.sendExceptions === true;
       this._gaExDesc = cfg.sendExceptionsMsg === true;
-      this._gaCustomTasks = cfg.customTasks || []; //this.debug("customData", cfg.customData)
+      this._gaCustomTasks = cfg.customTasks || [];
+      this._gaCreateCallback = cfg._gaCreateCallback || null; //this.debug("customData", cfg.customData)
       //this.debug("trackerName", this._trackerName)
       //ADD CUSTOM DATA TO CONFIG
 
@@ -2288,7 +2293,7 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
     value: function stopOnLeave() {
       var _this6 = this;
 
-      if (this._stopOnLeave) return;
+      if (this._stopOnLeaveEvent) return;
 
       this._stopOnLeave = function (e) {
         if (!_this6.isPlaying) {
