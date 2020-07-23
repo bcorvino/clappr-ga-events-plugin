@@ -16,7 +16,7 @@ export default class GaEventsPlugin extends CorePlugin {
     this.readPluginConfig(this.options.gaEventsPlugin)
     //debug("plugin constructor after", this._trackerName, this._createFieldsObject)
     gaTrackingSnippet(this._gaCfg.name, this._gaCfg.debug, this._gaCfg.trace, (r) => {
-      //debug("ga create", this._createFieldsObject)
+      this.debug("ga create", this._createFieldsObject)
       r && this._ga('create', this._trackingId, this._trackerName, this._createFieldsObject)
 
       if(this._gaCreateCallback) {

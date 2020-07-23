@@ -1816,7 +1816,8 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
 
 
     (0, _gaTracking["default"])(_this._gaCfg.name, _this._gaCfg.debug, _this._gaCfg.trace, function (r) {
-      //debug("ga create", this._createFieldsObject)
+      _this.debug("ga create", _this._createFieldsObject);
+
       r && _this._ga('create', _this._trackingId, _this._trackerName, _this._createFieldsObject);
 
       if (_this._gaCreateCallback) {
