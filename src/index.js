@@ -20,6 +20,7 @@ export default class GaEventsPlugin extends CorePlugin {
       r && this._ga('create', this._trackingId, this._trackerName, this._createFieldsObject)
 
       if(this._gaCreateCallback) {
+        this.debug('running custom callback', this._gaCreateCallback);
         this._gaCreateCallback;
       }
 

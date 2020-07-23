@@ -1820,6 +1820,8 @@ var GaEventsPlugin = /*#__PURE__*/function (_CorePlugin) {
       r && _this._ga('create', _this._trackingId, _this._trackerName, _this._createFieldsObject);
 
       if (_this._gaCreateCallback) {
+        _this.debug('running custom callback', _this._gaCreateCallback);
+
         _this._gaCreateCallback;
       }
 
